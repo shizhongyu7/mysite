@@ -18,28 +18,27 @@
       <input type="text" id="username" name="username" placeholder="{{ t['username'] }}"
              value="{{ saved_username }}" required maxlength="20" class="form-control">
     </div>
-    
     <div class="form-group">
       <textarea id="text" name="text" placeholder="{{ t['placeholder'] }}"
                 required maxlength="1000" class="form-control"></textarea>
     </div>
-    
-    <p><button type="submit">{{ t['submit'] }}</button></p>
+    <div class="center">
+      <p><button type="submit">{{ t['submit'] }}</button></p>
+    </div>
   </form>
-  <hr>
-  {% if messages %}
-    {% for username, text, timestamp in messages %}
-      <div class="message-bubble">
-        <div class="message-header">
-          <strong>{{ username }}</strong>
-          <span class="timestamp">{{ timestamp }}</span>
+  <div class="showmessage">
+    {% if messages %}
+      {% for username, text, timestamp in messages %}
+        <div class="message-bubble">
+          <div class="message-header">
+            <strong>{{ username }}</strong>
+            <span class="timestamp">{{ timestamp }}</span>
+          </div>
+          <div class="message-text">{{ text }}</div>
         </div>
-        <div class="message-text">{{ text }}</div>
-      </div>
-    {% endfor %}
-  {% else %}
-    <p>{{ t['no_message'] }}</p>
-  {% endif %}
+      {% endfor %}
+    {% endif %}
+    </div>
 </section>
 {% endblock %}
 
