@@ -204,6 +204,11 @@ footer {
     color: #bbb;
   }
 
+  .message-text {
+  white-space: pre-wrap;
+  color: #ffffff;
+}
+
   button {
     background-color: #2058cf;
     color: #fff;
@@ -217,9 +222,4 @@ footer {
 h1, h2, h3 {
   color: #1663b1;
 
-}
-
-.message-text {
-  white-space: pre-wrap;
-  color: #ffffff;
 }
