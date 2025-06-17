@@ -4,12 +4,13 @@
 
 {% block content %}
 <section id="hero" class="text-center">
-  <h1>{{ t['hi'] }}</h1>
+  <h1 id="hi">{{ t['hi'] }}</h1>
 
   <img src="{{ url_for('static', filename='img/monkey.png') }}"
        alt="photo"
        class="hero-img">
 </section>
+<hr>
 <section id="guestbook">
   <h2>{{ t['guestbook'] }}</h2>
   <form action="{{ url_for('submit') }}" method="post">

@@ -5,6 +5,11 @@
   padding: 10;
 }
 
+#hi {
+  font-size: 10rem;
+  margin-top: 0;
+}
+
 body {
   font-family: "Segoe UI", "Helvetica Neue", sans-serif;
   background-color: #f5f5f7;
@@ -18,8 +23,9 @@ body {
   height: auto;
   border-radius: 12px;
   object-fit: contain;
-  animation: colorShift 10s infinite alternate;
+  animation: colorShift 20s infinite alternate;
   filter: hue-rotate(0deg);
+  margin-bottom: 20px;
 }
 
 @keyframes colorShift {
@@ -36,6 +42,7 @@ body {
   margin: 40px auto;
   background: #fff;
   padding: 32px;
+  
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
 }
