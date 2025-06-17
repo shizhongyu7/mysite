@@ -1,2 +1,4 @@
 flask
 gunicorn
+sqlite3
+os

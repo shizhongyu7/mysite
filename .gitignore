@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Flask instance folder (e.g. where your db file may live)
+instance/
+*.db
+*.sqlite3
+*.sqlite
+*.log
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Bytecode and compiled files
+*.pyc
+*.pyo
+*.pyd
+*.class
+
+# Test cache
+.coverage
+.tox/
+.cache/
+.pytest_cache/
+
+# System
+Thumbs.db
+ehthumbs.db
+Icon?

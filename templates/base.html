@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <div class="lang-switch">
+    <a href="{{ url_for('switch_lang', code='zh') }}" class="{{ 'active' if lang == 'zh' else '' }}">中</a>
+    <span class="sep">｜</span>
+    <a href="{{ url_for('switch_lang', code='en') }}" class="{{ 'active' if lang == 'en' else '' }}">En</a>
+  </div>
+  <header>
+    <h1>{% block header %}{{ t['title'] }}{% endblock %}</h1>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <small>O_o</small>
+  </footer>
+
+  {% block scripts %}
+  {% endblock %}
+</body>
+</html>
