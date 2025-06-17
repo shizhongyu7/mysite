@@ -13,21 +13,25 @@ DB_PATH = os.path.join(os.path.dirname(__file__), 'data/messages.db')
 translations = {
     'zh': {
         'title': '我的网站',
+        'home': '首页',
         'hi': '你好',
         'username': '你的名字',
         'placeholder': '写下你的留言...',
         'submit': '发送',
         'switch': 'English',
-        'guestbook': '留言板'
+        'guestbook': '留言板',
+        'nothing': '未完成'
     },
     'en': {
         'title': "My Site",
+        'home': 'home',
         'hi': 'hi',
         'username': 'Your name',
         'placeholder': 'Leave your message...',
         'submit': 'Send',
         'switch': '中文',
-        'guestbook': 'guestbook'
+        'guestbook': 'guestbook',
+        'nothing': "nothing"
     }
 }
 
@@ -46,8 +50,7 @@ def get_lang():
 
 @app.route('/')
 def index():
-    lang = get_lang()
-    t = translations[lang]
+    t, lang = get_translations()
     saved_username = request.cookies.get('username', '')
 
     with sqlite3.connect(DB_PATH) as conn:
@@ -75,7 +78,7 @@ def submit():
     # 限制频率
     if now_ts - last_submit < 10:
         lang = get_lang()
-        flash("提交太频繁，请稍候再试。" if lang == 'zh' else "Please wait before submitting again.")
+        flash("提交太频繁，请稍候再试" if lang == 'zh' else "Please wait before submitting again.")
         return redirect(url_for('index'))
 
     session['last_submit'] = now_ts
@@ -105,6 +108,16 @@ def switch_lang(code):
     if code in ['zh', 'en']:
         resp.set_cookie('lang', code, max_age=60 * 60 * 24 * 365)
     return resp
+@app.route('/nothing')
+def nothing():
+    t, lang = get_translations()
+    return render_template('nothing.html', t=t, lang=lang)
+
+
+def get_translations():
+    lang = get_lang()
+    return translations[lang], lang
+
 
 if __name__ == '__main__':
     app.run(debug=True)

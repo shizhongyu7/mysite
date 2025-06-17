@@ -1,19 +1,87 @@
 /* ========== 全局基础 ========== */
 * {
   box-sizing: border-box;
-  margin: 10;
-  padding: 10;
+  margin: 0;
+  padding: 0;
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px; /* 可调，比如 56px/64px/72px 看你喜好 */
+  line-height: 64px; /* 确保文字垂直居中 */
+  margin: 0 2em;
+  padding: 0;
+  background-color: #fdfdfd;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* 左边的站点标题 */
+header .info .site-name {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #272549;
+}
+
+/* 中间导航栏（横向排列） */
+header .navbar {
+  display: flex;
+}
+header .navbutton {
+  width: 7em;
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center;     /* 垂直居中 */
+}
+header .navbutton a {
+  text-decoration: none;
+  text-align: center;
+  color: #474d5a;
+  font-size: 1.25rem;
+  font-weight: 400;
+  padding: 0.2rem 0.2rem;
+}
+
+header .navbutton a:hover {
+  color: #272549;
+  font-weight: 400;
+}
+
+header .navbutton a.active {
+  font-weight: 700;
+  color: #272549;
+}
+
+/* 右侧语言切换 */
+header .setting .lang-switch {
+  font-size: 0.95rem;
+}
+
+header .setting .lang-switch a {
+  margin: 0 0.25rem;
+  color: #8284a1;
+  text-decoration: none;
+}
+
+header .setting .lang-switch a.active {
+  font-weight: bold;
+  color: #272549;
+}
+
 
 #hi {
   font-size: 10rem;
   margin-top: 0;
+  padding-top: 0;
+  
 }
 
 .flash-messages {
   list-style: none;
-  padding: 1em;
-  margin: 1em auto;
+  margin: 0 auto;
   max-width: 500px;
   border: 1px solid #f5c2c7;
   background-color: #f8d7da;
@@ -37,8 +105,8 @@
   border: 1px solid #f5c2c7;
   background-color: #f8d7da;
   color: #842029;
-  padding: 1em;
-  margin: 1em auto;
+  padding: 0.5em;
+  margin: 0 auto;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   z-index: 1000;
@@ -53,11 +121,14 @@
 
 body {
   font-family: "Segoe UI", "Helvetica Neue", sans-serif;
-  background-color: #f5f5f7;
-  color: #222;
+  background-color: #fdfdfd;
+  color: #1c1e22;
   line-height: 1.6;
   padding: 40px 16px;
+  margin-top: 0;
+  padding-top: 0;
 }
+
 .hero-img {
   display: block;
   max-width: 100%;
@@ -66,6 +137,7 @@ body {
   object-fit: contain;
   animation: colorShift 20s infinite alternate;
   filter: hue-rotate(0deg);
+  margin: 0 auto;
   margin-bottom: 20px;
 }
 
@@ -79,14 +151,18 @@ body {
 
 /* ========== 容器 ========== */
 .container {
-  max-width: 640px;
-  margin: 40px auto;
-  background: #fff;
+  margin: 4px auto;
   padding: 32px;
   
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
 }
+
+#guestbook {
+  max-width: 700px;
+  margin: 0 auto;
+
+}
+
 
 /* ========== 标题 ========== */
 h1, h2, h3 {
@@ -185,41 +261,16 @@ footer {
   margin-top: 40px;
 }
 
-.lang-switch {
-  position: absolute;
-  top: 20px;
-  left: 24px;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
 
-.lang-switch a {
-  color: #666;
-  text-decoration: none;
-  padding: 2px 4px;
-  transition: color 0.2s;
-}
-
-.lang-switch a.active {
-  color: #1e40af;
-  font-weight: 600;
-}
-
-.lang-switch .sep {
-  margin: 0 2px;
-  color: #bbb;
-}
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #1e1e1e;
+    background-color: #2a2a2a;
     color: #e0e0e0;
   }
 
   .container {
-    background-color: #2a2a2a;
     color: #e0e0e0;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
   }
 
   #username {

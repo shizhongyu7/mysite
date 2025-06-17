@@ -8,13 +8,36 @@
   {% block head %}{% endblock %}
 </head>
 <body>
-  <div class="lang-switch">
-    <a href="{{ url_for('switch_lang', code='zh') }}" class="{{ 'active' if lang == 'zh' else '' }}">中</a>
-    <span class="sep">｜</span>
-    <a href="{{ url_for('switch_lang', code='en') }}" class="{{ 'active' if lang == 'en' else '' }}">En</a>
-  </div>
   <header>
-    <h1>{% block header %}{{ t['title'] }}{% endblock %}</h1>
+    <div class='info'>
+      <span class="site-name">{{ t['title']}}</span>
+    </div>
+    <div class='navbar'>
+      <div class="navbutton">
+        <a href="{{ url_for('index')}}" 
+          class="{% if request.path == '/' %}active{% endif %}">
+          {{ t['home'] }}</a>
+      </div>
+      <div class="navbutton">
+        <a href="{{ url_for('nothing') }}">{{ t['nothing'] }}</a>
+      </div>
+      <div class="navbutton">
+        <a href="{{ url_for('nothing') }}">{{ t['nothing'] }}</a>
+      </div>
+      <div class="navbutton">
+        <a href="{{ url_for('nothing') }}">{{ t['nothing'] }}</a>
+      </div>
+      <div class="navbutton">
+        <a href="{{ url_for('nothing') }}">{{ t['nothing'] }}</a>
+      </div>
+    </div>
+    <div class = 'setting'>
+      <div class="lang-switch">
+        <a href="{{ url_for('switch_lang', code='zh') }}" class="{{ 'active' if lang == 'zh' else '' }}">中</a>
+        <span class="sep">｜</span>
+        <a href="{{ url_for('switch_lang', code='en') }}" class="{{ 'active' if lang == 'en' else '' }}">En</a>
+      </div>
+    </div>
   </header>
 
   {% with messages = get_flashed_messages() %}

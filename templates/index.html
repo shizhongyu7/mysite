@@ -11,11 +11,9 @@
        alt="photo"
        class="hero-img">
 </section>
-<hr>
 <section id="guestbook">
   <h2>{{ t['guestbook'] }}</h2>
   <form action="{{ url_for('submit') }}" method="post">
-    <input type="hidden" name="scrollY" id="scrollY">
     <div class="form-group">
       <input type="text" id="username" name="username" placeholder="{{ t['username'] }}"
              value="{{ saved_username }}" required maxlength="20" class="form-control">
