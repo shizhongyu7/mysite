@@ -3,6 +3,7 @@
 {% block title %}my site{% endblock %}
 
 {% block content %}
+
 <section id="hero" class="text-center">
   <h1 id="hi">{{ t['hi'] }}</h1>
 
@@ -14,6 +15,7 @@
 <section id="guestbook">
   <h2>{{ t['guestbook'] }}</h2>
   <form action="{{ url_for('submit') }}" method="post">
+    <input type="hidden" name="scrollY" id="scrollY">
     <div class="form-group">
       <input type="text" id="username" name="username" placeholder="{{ t['username'] }}"
              value="{{ saved_username }}" required maxlength="20" class="form-control">

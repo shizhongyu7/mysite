@@ -1,8 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response
+from flask import Flask, render_template, request, redirect, url_for, make_response, flash, session
 import sqlite3, os
 from datetime import datetime
+import time
+
+
 
 app = Flask(__name__)
+app.secret_key = 'a-very-secret-key-1234567890'
 DB_PATH = os.path.join(os.path.dirname(__file__), 'data/messages.db')
 
 # 多语言词典
@@ -63,20 +67,37 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
+    scrollY = request.form.get('scrollY', '0')
+
+    now_ts = time.time()
+    last_submit = session.get('last_submit', 0)
+
+    # 限制频率
+    if now_ts - last_submit < 60:
+        lang = get_lang()
+        flash("提交太频繁，请稍候再试。" if lang == 'zh' else "Please wait before submitting again.")
+        return redirect(url_for('index'))
+
+    session['last_submit'] = now_ts
+
     username = request.form.get('username', '').strip()
     text = request.form.get('text', '').strip()
     lang = get_lang()
-    
+
     resp = redirect(url_for('index'))
 
     if username and text:
+        now_str = datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # 本地时间字符串
         with sqlite3.connect(DB_PATH) as conn:
             c = conn.cursor()
-            c.execute("INSERT INTO messages (username, text) VALUES (?, ?)", (username, text))
+            c.execute("INSERT INTO messages (username, text, timestamp) VALUES (?, ?, ?)",
+                      (username, text, now_str))
             conn.commit()
         resp.set_cookie('username', username, max_age=60 * 60 * 24 * 30)
 
+    resp.set_cookie('last_submit_time', str(now_ts), max_age=3600)
     return resp
+
 
 @app.route('/lang/<code>')
 def switch_lang(code):

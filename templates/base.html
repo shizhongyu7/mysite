@@ -17,6 +17,16 @@
     <h1>{% block header %}{{ t['title'] }}{% endblock %}</h1>
   </header>
 
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-popup" id="flash-popup">
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
   <main class="container">
     {% block content %}{% endblock %}
   </main>
@@ -26,6 +36,7 @@
   </footer>
 
   {% block scripts %}
+    <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
   {% endblock %}
 </body>
 </html>
