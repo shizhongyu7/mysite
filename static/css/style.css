@@ -126,7 +126,7 @@ button:hover {
 
 .message-text {
   white-space: pre-wrap;
-  color: #ffffff;
+  color: #000000;
 }
 
 /* 页脚靠右、字体小 */
@@ -217,4 +217,9 @@ footer {
 h1, h2, h3 {
   color: #1663b1;
 
+}
+
+.message-text {
+  white-space: pre-wrap;
+  color: #ffffff;
 }

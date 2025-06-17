@@ -10,19 +10,18 @@ translations = {
     'zh': {
         'title': '我的网站',
         'hi': '你好',
-        'username': '用户名',
+        'username': '你的名字',
         'placeholder': '写下你的留言...',
-        'submit': '提交',
+        'submit': '发送',
         'switch': 'English',
         'guestbook': '留言板'
     },
     'en': {
         'title': "My Site",
         'hi': 'hi',
-        'username': 'Username',
+        'username': 'Your name',
         'placeholder': 'Leave your message...',
-        'submit': 'Submit',
-        'no_message': 'No messages yet. Be the first!',
+        'submit': 'Send',
         'switch': '中文',
         'guestbook': 'guestbook'
     }
