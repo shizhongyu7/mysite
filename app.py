@@ -73,7 +73,7 @@ def submit():
     last_submit = session.get('last_submit', 0)
 
     # 限制频率
-    if now_ts - last_submit < 60:
+    if now_ts - last_submit < 10:
         lang = get_lang()
         flash("提交太频繁，请稍候再试。" if lang == 'zh' else "Please wait before submitting again.")
         return redirect(url_for('index'))
