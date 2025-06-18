@@ -318,14 +318,14 @@ button:hover {
 
 /* 页脚靠右、字体小 */
 footer {
+  position: absolute;
   text-align: right;
+  right: 0;
+  bottom: 0;
   color: var(--color-text-light);
   font-size: 0.8rem;
   margin-top: 40px;
 }
-
-
-
 
 
 /* 针对小屏幕的修正 */
@@ -379,5 +379,5 @@ footer {
   font-size: 6rem;
   font-weight: 600;
   color: var(--color-primary);
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Special Elite", Courier, monospace;
 }
