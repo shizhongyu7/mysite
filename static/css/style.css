@@ -5,6 +5,39 @@
   padding: 0;
 }
 
+:root {
+  --color-primary: #5e4cf3;
+  --color-primary-hover: #8573f3;
+  --color-primary-strong: #4337aa;
+  --color-background: #fdfdfd;
+  --color-background-upper: #f3f5f9;
+  --color-text: #474d5a;
+  --color-text-strong: #272549;
+  --color-text-light: #8283a1;
+  --color-text-placeholder: #c2c1d4;
+  --color-inputarea-hover: #fbfbfb;
+  --color-bubble: #edebfc;
+  --color-bubble-hover: #e6e3fa;
+  --color-trans: #00000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #5e4cf3;
+    --color-primary-hover: #8573f3;
+    --color-primary-strong: #4337aa;
+    --color-background: #1d1d1f;
+    --color-background-upper: #171717;
+    --color-text: #9391ab;
+    --color-text-strong: #d8d8e2;
+    --color-text-light: #7b799a;
+    --color-text-placeholder: #4e4d5e;
+    --color-inputarea-hover: #040404;
+    --color-bubble: #232134;
+    --color-bubble-hover: #2a283d;
+  }
+}
+
 .flash-messages {
   list-style: none;
   margin: 0 auto;
@@ -51,7 +84,7 @@ header {
   line-height: 64px; /* 确保文字垂直居中 */
   margin: 0;
   padding: 0;
-  background-color: #fdfdfd;
+  background-color: var(--color-background);
   position: sticky;
   top: 0;
   z-index: 999;
@@ -74,7 +107,7 @@ header .info {
 header .info .site-name {
   font-size: 1.7rem;
   font-weight: 600;
-  color: #272549;
+  color: var(--color-text-strong);
 }
 
 /* 中间导航栏（横向排列） */
@@ -91,18 +124,18 @@ header .navbutton {
 header .navbutton a {
   text-decoration: none;
   text-align: center;
-  color: #474d5a;
+  color: var(--color-text);
   font-size: 1.25rem;
   font-weight: 400;
   padding: 0.2rem 0.2rem;
 }
 header .navbutton a:hover {
-  color: #5e4cf3;
+  color: var(--color-primary);
   font-weight: 400;
 }
 header .navbutton a.active {
   font-weight: 700;
-  color: #5e4cf3;
+  color: var(--color-primary);
 }
 
 /* 右侧语言切换 */
@@ -116,28 +149,28 @@ header .setting .lang-switch {
   font-size: 0.95rem;
 }
 header .setting .lang-switch a {
-  color: #8284a1;
+  color: var(--color-text-light);
   text-decoration: none;
 }
 header .setting .lang-switch a:hover {
-  color: #272549;
+  color: var(--color-text-strong);
   text-decoration: none;
 }
 header .setting .lang-switch a.active {
   font-weight: bold;
-  color: #5e4cf3;
+  color: var(--color-primary);
 }
 
 body {
   font-family: "Segoe UI", "Helvetica Neue", sans-serif;
-  background-color: #fdfdfd;
-  color: #1c1e22;
+  background-color: var(--color-background);
+  color: var(--color-text-strong);
   line-height: 1.6;
 }
 /* ========== 标题 ========== */
 h1, h2, h3 {
   font-weight: 600;
-  color: #4337aa;
+  color: var(--color-primary-strong);
   text-align: center;
 }
 .center {
@@ -155,7 +188,6 @@ h1, h2, h3 {
   font-size: 10rem;
   margin-top: 0;
   padding-top: 0;
-  
 }
 
 .hero-img {
@@ -195,34 +227,33 @@ textarea {
   margin-bottom: 20px;
   border-radius: 6px;
   border: 2px solid;
-  border-color: #f3f5f9;
-  background-color: #f3f5f9;
+  border-color: var(--color-background-upper);
+  background-color: var(--color-background-upper);
   font-size: 1rem;
-  color: #272549;
+  color: var(--color-text-strong);
   transition: border 0.2s;
   max-width: 320px;
   display: block;
 }
 
+input[type="text"]:hover,
 input[type="text"]:focus,
+textarea:hover,
 textarea:focus {
   outline: none;
   border: 2px solid;
-  border-color: #5e4cf3;
-  background-color: #fbfbfb;
+  border-color: var(--color-primary);
+  background-color: var(--color-inputarea-hover);
 }
-
 input,
 textarea {
-  caret-color: #8283a1;
+  caret-color: var(--color-text-light);
 }
-
 input::placeholder,
 textarea::placeholder {
-  color: #c2c1d4;
+  color: var(--color-text-placeholder);
   opacity: 1;
 }
-
 textarea {
   resize: none; /* 禁止拖动 */
   height: 100px; /* 固定高度 */
@@ -231,10 +262,10 @@ textarea {
 
 /* ========== 按钮样式 ========== */
 button {
-  background-color: #5d4cf300;
+  background-color: var(--color-trans);
   border: 2px solid;
-  border-color: #5e4cf3;
-  color: #5e4cf3;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
   padding: 10px 20px;
   font-size: 1.2rem;
   border-radius: 0.8em;
@@ -242,19 +273,19 @@ button {
 }
 
 button:hover {
-  border-color: #8573f3;
-  color: #8573f3;
+  border-color: var(--color-primary-hover);
+  color: var(--color-primary-hover);
 }
 
 /* ========== 留言列表 ========== */
 .showmessage {
-  background-color: #f3f5f9;
+  background-color: var(--color-background-upper);
   border-radius: 20px;
   padding: 1em;
 }
 /* 留言气泡样式 */
 .message-bubble {
-  background: #edebfc;
+  background: var(--color-bubble);
   border-radius: 12px;
   padding: 12px 16px;
   margin-bottom: 16px;
@@ -264,12 +295,12 @@ button:hover {
 }
 
 .message-bubble:hover {
-  background: #e6e3fa;
+  background: var(--color-bubble-hover);
 }
 
 .message-header {
   font-size: 0.9rem;
-  color: #8284a1;
+  color: var(--color-text-light);
   margin-bottom: 4px;
   display: flex;
   align-items: center;
@@ -277,18 +308,18 @@ button:hover {
 }
 
 .message-header strong {
-  color: #5e4cf3;
+  color: var(--color-primary);
 }
 
 .message-text {
   white-space: pre-wrap;
-  color: #272549;
+  color: var(--color-text-strong);
 }
 
 /* 页脚靠右、字体小 */
 footer {
   text-align: right;
-  color: #aaa;
+  color: var(--color-text-light);
   font-size: 0.8rem;
   margin-top: 40px;
 }
@@ -331,69 +362,22 @@ footer {
     width: fit-content;
     margin: 0;
   }
-  
+
   .container {
     padding: 2em;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #2a2a2a;
-    color: #e0e0e0;
-  }
 
-  h1, h2, h3 {
-  color: #829cb7;
-  }
 
-  .container {
-    color: #e0e0e0;
-  }
-
-  #username {
-    background-color: #333;
-    color: #fff;
-    border: 1px solid #555;
-  }
-
-  textarea {
-    background-color: #333;
-    color: #fff;
-    border: 1px solid #555;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: #aaa;
-  }
-
-  .message-bubble {
-    background-color: #434242;
-    color: #e0e0e0;
-  }
-
-  .message-bubble:hover {
-    background: #454648;
-  }
-
-  .message-header {
-    color: #bbb;
-  }
-
-  .message-text {
-  white-space: pre-wrap;
-  color: #ffffff;
-  }
-
-  button {
-    background-color: #2058cf;
-    color: #fff;
-  }
-
-  button:hover {
-    background-color: #2f68c4;
-  }
+.not-found {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 6rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  font-family: "Courier New", Courier, monospace;
 }
-
-

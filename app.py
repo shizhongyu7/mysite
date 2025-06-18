@@ -12,7 +12,7 @@ DB_PATH = os.path.join(os.path.dirname(__file__), 'data/messages.db')
 # 多语言词典
 translations = {
     'zh': {
-        'title': '我的网站',
+        'title': 'szy的网站',
         'home': '首页',
         'hi': '你好',
         'username': '你的名字',
@@ -20,7 +20,7 @@ translations = {
         'submit': '发送',
         'switch': 'English',
         'guestbook': '留言板',
-        'nothing': '制作中'
+        'nothing': '制作中',
     },
     'en': {
         'title': "My Site",
@@ -31,7 +31,7 @@ translations = {
         'submit': 'Send',
         'switch': '中文',
         'guestbook': 'guestbook',
-        'nothing': "nothing"
+        'nothing': "nothing",
     }
 }
 
@@ -118,6 +118,12 @@ def nothing():
 def get_translations():
     lang = get_lang()
     return translations[lang], lang
+
+@app.errorhandler(404)
+def page_not_found(e):
+    lang = get_lang()
+    t = translations[lang]
+    return render_template('404.html', t=t, lang=lang), 404
 
 
 if __name__ == '__main__':
