@@ -57,6 +57,29 @@ header {
   z-index: 999;
 }
 
+/* 针对小屏幕的修正 */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    height: auto;
+    padding: 0.5rem 1rem;
+  }
+
+  header .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  header .navbutton {
+    width: auto;
+    margin: 0.3rem;
+  }
+
+  header .setting {
+    margin-top: 0.5rem;
+  }
+}
+
 /* 左边的站点标题 */
 header .info {
   display: flex;
