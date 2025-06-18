@@ -157,7 +157,7 @@ h1, h2, h3 {
   height: auto;
   border-radius: 12px;
   object-fit: contain;
-  animation: colorShift 20s infinite alternate;
+  animation: colorShift 30s infinite alternate;
   filter: hue-rotate(0deg);
   margin: 0 auto;
   margin-bottom: 20px;

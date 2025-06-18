@@ -20,7 +20,7 @@ translations = {
         'submit': '发送',
         'switch': 'English',
         'guestbook': '留言板',
-        'nothing': '未完成'
+        'nothing': '制作中'
     },
     'en': {
         'title': "My Site",
@@ -108,6 +108,7 @@ def switch_lang(code):
     if code in ['zh', 'en']:
         resp.set_cookie('lang', code, max_age=60 * 60 * 24 * 365)
     return resp
+
 @app.route('/nothing')
 def nothing():
     t, lang = get_translations()
