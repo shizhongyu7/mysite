@@ -56,6 +56,9 @@
       </div>
     </div>
     <div class = 'setting'>
+      <div class="theme-switcher">
+        <img id="theme-toggle" src="{{ url_for('static', filename='img/theme.png') }}" alt="Theme">
+      </div>
       <div class="lang-switch">
         <a href="{{ url_for('switch_lang', code='zh') }}" class="{{ 'active' if lang == 'zh' else '' }}">中</a>
         <span class="sep">｜</span>
@@ -84,6 +87,7 @@
 
   {% block scripts %}
     <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
   {% endblock %}
   <div class="corner-mark">O_o</div>
 

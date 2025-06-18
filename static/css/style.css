@@ -22,8 +22,7 @@
   --brightness: 1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
+[data-theme="dark"] {
     --color-primary: #5e4cf3;
     --color-primary-hover: #8573f3;
     --color-primary-strong: #4337aa;
@@ -38,7 +37,7 @@
     --color-bubble-hover: #2a283d;
     --brightness: 0.7;
   }
-}
+
 
 .flash-messages {
   list-style: none;
@@ -147,15 +146,34 @@ header .setting {
   justify-content: flex-end;
   margin-right: 2em;
 }
+.theme-switcher {
+  position: relative;
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+#theme-toggle {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+  transition: opacity 0.3s;
+}
+
+#theme-toggle:hover {
+  opacity: 0.7;
+}
+
 header .setting .lang-switch {
   font-size: 0.95rem;
 }
 header .setting .lang-switch a {
   color: var(--color-text-light);
   text-decoration: none;
+  transition: opacity 0.3s;
 }
 header .setting .lang-switch a:hover {
-  color: var(--color-text-strong);
+  opacity: 0.7;
   text-decoration: none;
 }
 header .setting .lang-switch a.active {
