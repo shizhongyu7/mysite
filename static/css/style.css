@@ -19,6 +19,7 @@
   --color-bubble: #edebfc;
   --color-bubble-hover: #e6e3fa;
   --color-trans: #00000000;
+  --brightness: 1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +36,7 @@
     --color-inputarea-hover: #040404;
     --color-bubble: #232134;
     --color-bubble-hover: #2a283d;
+    --brightness: 0.7;
   }
 }
 
@@ -196,18 +198,19 @@ h1, h2, h3 {
   height: auto;
   border-radius: 12px;
   object-fit: contain;
-  animation: colorShift 30s infinite alternate;
-  filter: hue-rotate(0deg);
   margin: 0 auto;
   margin-bottom: 20px;
+  animation: colorShift 30s infinite alternate;
 }
+
 @keyframes colorShift {
-  0%   { filter: hue-rotate(0deg); }
-  25%  { filter: hue-rotate(90deg); }
-  50%  { filter: hue-rotate(180deg); }
-  75%  { filter: hue-rotate(270deg); }
-  100% { filter: hue-rotate(360deg); }
+  0%   { filter: hue-rotate(0deg) brightness(var(--brightness)); }
+  25%  { filter: hue-rotate(90deg) brightness(var(--brightness)); }
+  50%  { filter: hue-rotate(180deg) brightness(var(--brightness)); }
+  75%  { filter: hue-rotate(270deg) brightness(var(--brightness)); }
+  100% { filter: hue-rotate(360deg) brightness(var(--brightness)); }
 }
+
 
 #guestbook {
   max-width: 700px;
@@ -318,13 +321,22 @@ button:hover {
 
 /* 页脚靠右、字体小 */
 footer {
-  position: absolute;
   text-align: right;
-  right: 0;
-  bottom: 0;
   color: var(--color-text-light);
   font-size: 0.8rem;
   margin-top: 40px;
+}
+
+.corner-mark {
+  position: fixed;
+  bottom: 2px;
+  right: 2px;
+  font-size: 1rem;
+  color: var(--color-text-light);  /* 你可以调整颜色 */
+  z-index: 9999;  /* 确保永远在最上面 */
+  pointer-events: none; /* 避免用户误点它 */
+  user-select: none; /* 不能选中 */
+  opacity: 0.8; /* 稍微半透明一点更有质感 */
 }
 
 
