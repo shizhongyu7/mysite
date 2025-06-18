@@ -301,32 +301,33 @@ footer {
 /* 针对小屏幕的修正 */
 @media (max-width: 768px) {
   header {
-    height: auto;
-    padding: 0.5rem 1rem;
+    flex-direction: column;
+    height: fit-content;
+    position: static;
   }
 
   header .info {
     width: fit-content;
-    height: fit-content;
-    margin: 0;
+    height: 30px;
+    margin: 1em auto;
     padding: 0;
   }
 
   header .navbar {
     flex-wrap: wrap;
-    height: fit-content;
+    height: 2em;
     justify-content: center;
     gap: 10px;
   }
 
   header .navbutton {
     width: fit-content;
-    height: fit-content;
+    height: 2em;
   }
 
   header .setting {
     width: fit-content;
-    height: fit-content;
+    height: 20px;
     margin: 0;
   }
 }
