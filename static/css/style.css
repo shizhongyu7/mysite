@@ -352,9 +352,13 @@ footer {
   font-size: 1rem;
   color: var(--color-text-light);  /* 你可以调整颜色 */
   z-index: 9999;  /* 确保永远在最上面 */
-  pointer-events: none; /* 避免用户误点它 */
   user-select: none; /* 不能选中 */
   opacity: 0.8; /* 稍微半透明一点更有质感 */
+}
+.corner-mark a {
+  color: var(--color-text-light);  /* 你可以调整颜色 */
+  opacity: 0.8; /* 稍微半透明一点更有质感 */
+  text-decoration: none;
 }
 
 
@@ -410,4 +414,18 @@ footer {
   font-weight: 600;
   color: var(--color-primary);
   font-family: "Special Elite", Courier, monospace;
+}
+
+.O_o {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 20rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }

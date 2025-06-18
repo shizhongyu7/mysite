@@ -114,6 +114,10 @@ def nothing():
     t, lang = get_translations()
     return render_template('nothing.html', t=t, lang=lang)
 
+@app.route('/O_o')
+def O_o():
+    t, lang = get_translations()
+    return render_template('O_o.html', t=t, lang=lang)
 
 def get_translations():
     lang = get_lang()

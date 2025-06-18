@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}404 - {{ t['title'] }}{% endblock %}
+
+{% block content %}
+  <div class="O_o" id="face">
+    O_o
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const face = document.getElementById("face");
+let isBigO = true;
+
+face.addEventListener("click", () => {
+  if (isBigO) {
+    // 第一步：先做缩小动画
+    face.style.transform = "translate(-50%, -50%) scale(0.9)";
+    setTimeout(() => {
+      // 第二步：动画结束后换文字
+      face.textContent = "o_O";
+      // 第三步：恢复放大动画
+      face.style.transform = "translate(-50%, -50%) scale(1)";
+    }, 150);
+  } else {
+    face.style.transform = "translate(-50%, -50%) scale(0.9)";
+    setTimeout(() => {
+      face.textContent = "O_o";
+      face.style.transform = "translate(-50%, -50%) scale(1)";
+    }, 150);
+  }
+  isBigO = !isBigO;
+});
+
+</script>
+{% endblock %}
