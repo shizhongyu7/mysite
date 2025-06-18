@@ -57,28 +57,6 @@ header {
   z-index: 999;
 }
 
-/* 针对小屏幕的修正 */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    height: auto;
-    padding: 0.5rem 1rem;
-  }
-
-  header .navbar {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  header .navbutton {
-    width: auto;
-    margin: 0.3rem;
-  }
-
-  header .setting {
-    margin-top: 0.5rem;
-  }
-}
 
 /* 左边的站点标题 */
 header .info {
@@ -320,7 +298,38 @@ footer {
 
 
 
+/* 针对小屏幕的修正 */
+@media (max-width: 768px) {
+  header {
+    height: auto;
+    padding: 0.5rem 1rem;
+  }
 
+  header .info {
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+  }
+
+  header .navbar {
+    flex-wrap: wrap;
+    height: fit-content;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  header .navbutton {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  header .setting {
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+  }
+}
 
 @media (prefers-color-scheme: dark) {
   body {
