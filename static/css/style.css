@@ -116,7 +116,6 @@ header .setting .lang-switch {
   font-size: 0.95rem;
 }
 header .setting .lang-switch a {
-  margin: 0 0.25rem;
   color: #8284a1;
   text-decoration: none;
 }
@@ -303,7 +302,7 @@ footer {
   header {
     flex-direction: column;
     height: fit-content;
-    position: static;
+    position: relative;
   }
 
   header .info {
@@ -326,9 +325,15 @@ footer {
   }
 
   header .setting {
+    position: absolute;
+    top: -0.3rem;
+    right: 1rem;
     width: fit-content;
-    height: 20px;
     margin: 0;
+  }
+
+  .container {
+    padding: 2em;
   }
 }
 
