@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/favicon_io/apple-touch-icon.png') }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon_io/favicon-32x32.png') }}">
@@ -14,6 +13,9 @@
 <body>
   <header>
     <div class='info'>
+      <div class='icon'>
+        <img src="{{ url_for('static', filename='img/favicon_io/headericon.png') }}" alt="icon">
+      </div>
       <span class="site-name">{{ t['title']}}</span>
     </div>
     <div class='navbar'>
