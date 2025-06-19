@@ -400,13 +400,6 @@ footer {
   .container {
     padding: 2em;
   }
-
-  .O_o {
-    font-size: 10rem;
-  }
-  .error {
-    font-size: 3rem;
-  }
 }
 
 
@@ -435,4 +428,12 @@ footer {
   user-select: none;
   cursor: pointer;
   transition: transform 0.3s ease;
+}
+@media (max-width: 600px) {
+  .O_o {
+    font-size: 10rem;
+  }
+  .error {
+    font-size: 3rem;
+  }
 }
