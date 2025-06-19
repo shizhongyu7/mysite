@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response, flash, session
+from flask import Flask, render_template, request, redirect, url_for, make_response, flash, session, abort
 import sqlite3, os
 from datetime import datetime
 import time
@@ -8,6 +8,7 @@ import time
 app = Flask(__name__)
 app.secret_key = 'a-very-secret-key-1234567890'
 DB_PATH = os.path.join(os.path.dirname(__file__), 'data/messages.db')
+ADMIN_PASSWORD = "12345"
 
 # 多语言词典
 translations = {
@@ -101,6 +102,29 @@ def submit():
     resp.set_cookie('last_submit_time', str(now_ts), max_age=3600)
     return resp
 
+@app.route('/admin')
+def admin():
+    pw = request.args.get('pw')
+    if pw != ADMIN_PASSWORD:
+        abort(403)
+    
+    lang = get_lang()
+    t = translations[lang]
+
+    with sqlite3.connect(DB_PATH) as conn:
+        c = conn.cursor()
+        c.execute("SELECT id, username, text, timestamp FROM messages ORDER BY id DESC")
+        rows = c.fetchall()
+
+    return render_template('admin.html', messages=rows, t=t, lang=lang)
+
+@app.route('/delete/<int:message_id>', methods=['POST'])
+def delete(message_id):
+    with sqlite3.connect(DB_PATH) as conn:
+        c = conn.cursor()
+        c.execute("DELETE FROM messages WHERE id=?", (message_id,))
+        conn.commit()
+    return redirect(url_for('admin'))
 
 @app.route('/lang/<code>')
 def switch_lang(code):
@@ -125,9 +149,13 @@ def get_translations():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    lang = get_lang()
-    t = translations[lang]
+    t, lang = get_translations()
     return render_template('404.html', t=t, lang=lang), 404
+
+@app.errorhandler(403)
+def forbidden(e):
+    t, lang = get_translations()
+    return render_template('403.html', t=t, lang=lang), 403
 
 
 if __name__ == '__main__':
