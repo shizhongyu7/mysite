@@ -220,7 +220,6 @@ h1, h2, h3 {
   margin-bottom: 20px;
   animation: colorShift 30s infinite alternate;
 }
-
 @keyframes colorShift {
   0%   { filter: hue-rotate(0deg) brightness(var(--brightness)); }
   25%  { filter: hue-rotate(90deg) brightness(var(--brightness)); }
@@ -437,3 +436,32 @@ footer {
     font-size: 3rem;
   }
 }
+
+.admin-table {
+  border-collapse: collapse;
+  width: auto;
+  margin: 0 auto;
+  background-color: var(--color-background-upper);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px 10px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1rem;
+  color: var(--color-text);
+  max-width: 400px;
+}
+
+.admin-table th {
+  font-weight: 600;
+}
+
+.admin-table .text-cell {
+  word-break: break-word; /* 重要: 让内容能在单词间换行 */
+  white-space: pre-wrap;
+}
+
+

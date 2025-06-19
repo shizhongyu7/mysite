@@ -3,17 +3,8 @@
 {% block title %}管理后台 - {{ t['title'] }}{% endblock %}
 
 {% block content %}
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul class="flash-messages">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-
-  <table>
+<div class="showmessage center">
+  <table class="admin-table">
     <tr>
       <th>ID</th>
       <th>用户名</th>
@@ -28,11 +19,12 @@
       <td>{{ text }}</td>
       <td>{{ timestamp }}</td>
       <td>
-        <form action="{{ url_for('delete', message_id=id) }}?pw={{ pw }}" method="post" style="display:inline;">
+        <form action="{{ url_for('delete', message_id=id) }}" method="post" style="display:inline;">
           <button type="submit" onclick="return confirm('确认删除？')">删除</button>
         </form>
       </td>
     </tr>
     {% endfor %}
   </table>
+</div>
 {% endblock %}
