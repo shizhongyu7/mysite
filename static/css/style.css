@@ -429,3 +429,8 @@ footer {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
+@media (max-width: 600px) {
+  .O_o {
+    font-size: 10rem;
+  }
+}
