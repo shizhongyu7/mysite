@@ -28,13 +28,21 @@
   </form>
   <div class="showmessage">
     {% if messages %}
-      {% for username, text, timestamp in messages %}
+      {% for username, text, timestamp, reply in messages %}
         <div class="message-bubble">
           <div class="message-header">
             <strong>{{ username }}</strong>
             <span class="timestamp">{{ timestamp }}</span>
           </div>
           <div class="message-text">{{ text }}</div>
+          <hr>
+          {% if reply %}
+            <div class="admin-reply">
+              <strong class="admin-name">szy </strong> 
+              <br>
+              {{ reply }}
+            </div>
+          {% endif %}
         </div>
       {% endfor %}
     {% endif %}

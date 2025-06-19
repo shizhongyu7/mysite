@@ -9,6 +9,7 @@
   --color-primary: #5e4cf3;
   --color-primary-hover: #8573f3;
   --color-primary-strong: #4337aa;
+  --color-secondary: #6bcbce;
   --color-background: #fdfdfd;
   --color-background-upper: #f3f5f9;
   --color-text: #474d5a;
@@ -26,6 +27,7 @@
     --color-primary: #5e4cf3;
     --color-primary-hover: #8573f3;
     --color-primary-strong: #4337aa;
+    --color-secondary: #6bcbce;
     --color-background: #1d1d1f;
     --color-background-upper: #171717;
     --color-text: #9391ab;
@@ -197,6 +199,14 @@ h1, h2, h3 {
   width: fit-content;
   margin: 0 auto;
 }
+hr {
+  width: 75%;
+  margin: 8px auto;
+  border: none;  /* 先去掉默认边框 */
+  height: 1px;   /* 线的粗细 */
+  background-color: var(--color-text-placeholder); /* 使用你已有的颜色变量 */
+  opacity: 0.5;  /* 让线条柔和一点 */
+}
 /* ========== 容器 ========== */
 .container {
   margin: 0 auto;
@@ -334,6 +344,13 @@ button:hover {
 .message-text {
   white-space: pre-wrap;
   color: var(--color-text-strong);
+}
+
+.admin-reply {
+  margin-left: 1em;
+}
+.admin-name {
+  color: var(--color-secondary);
 }
 
 /* 页脚靠右、字体小 */

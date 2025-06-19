@@ -56,16 +56,16 @@ def index():
 
     with sqlite3.connect(DB_PATH) as conn:
         c = conn.cursor()
-        c.execute("SELECT username, text, timestamp FROM messages ORDER BY id DESC")
+        c.execute("SELECT username, text, timestamp, reply FROM messages ORDER BY id DESC")
         rows = c.fetchall()
 
     messages = []
-    for username, text, ts in rows:
+    for username, text, ts, reply in rows:
         try:
             ts_fmt = datetime.strptime(ts, "%Y-%m-%d %H:%M:%S").strftime("%Y-%m-%d %H:%M")
         except:
             ts_fmt = ts
-        messages.append((username, text, ts_fmt))
+        messages.append((username, text, ts_fmt, reply))
 
     return render_template('index.html', messages=messages, t=t, lang=lang, saved_username=saved_username)
 
@@ -119,7 +119,7 @@ def admin():
 
     with sqlite3.connect(DB_PATH) as conn:
         c = conn.cursor()
-        c.execute("SELECT id, username, text, timestamp FROM messages ORDER BY id DESC")
+        c.execute("SELECT id, username, text, timestamp, reply FROM messages ORDER BY id DESC")
         rows = c.fetchall()
 
     return render_template('admin.html', messages=rows, t=t, lang=lang)
@@ -133,6 +133,20 @@ def delete(message_id):
         c = conn.cursor()
         c.execute("DELETE FROM messages WHERE id=?", (message_id,))
         conn.commit()
+    return redirect(url_for('admin'))
+
+@app.route('/reply/<int:message_id>', methods=['POST'])
+def reply(message_id):
+    if not session.get('is_admin'):
+        abort(403)
+
+    reply_content = request.form.get('reply', '').strip()
+
+    with sqlite3.connect(DB_PATH) as conn:
+        c = conn.cursor()
+        c.execute("UPDATE messages SET reply=? WHERE id=?", (reply_content, message_id))
+        conn.commit()
+
     return redirect(url_for('admin'))
 
 @app.route('/lang/<code>')
