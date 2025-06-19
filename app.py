@@ -116,15 +116,19 @@ def admin():
         c.execute("SELECT id, username, text, timestamp FROM messages ORDER BY id DESC")
         rows = c.fetchall()
 
-    return render_template('admin.html', messages=rows, t=t, lang=lang)
+    return render_template('admin.html', messages=rows, t=t, lang=lang, pw=pw)
 
 @app.route('/delete/<int:message_id>', methods=['POST'])
 def delete(message_id):
+    pw = request.args.get('pw')
+    if pw != ADMIN_PASSWORD:
+        abort(403)
+        
     with sqlite3.connect(DB_PATH) as conn:
         c = conn.cursor()
         c.execute("DELETE FROM messages WHERE id=?", (message_id,))
         conn.commit()
-    return redirect(url_for('admin'))
+    return redirect(url_for('admin', pw=pw))
 
 @app.route('/lang/<code>')
 def switch_lang(code):
