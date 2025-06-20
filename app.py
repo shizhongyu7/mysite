@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response, flash, session, abort
+from flask import Flask, render_template, request, redirect, url_for, make_response, flash, session, abort, jsonify
 import sqlite3, os
 from datetime import datetime
 import time
@@ -19,9 +19,10 @@ translations = {
         'username': '你的名字',
         'placeholder': '写下你的留言...',
         'submit': '发送',
-        'switch': 'English',
         'guestbook': '留言板',
         'nothing': '制作中',
+        'save': '保存',
+        'delete': '删除',
     },
     'en': {
         'title': "My Site",
@@ -30,9 +31,10 @@ translations = {
         'username': 'Your name',
         'placeholder': 'Leave your message...',
         'submit': 'Send',
-        'switch': '中文',
         'guestbook': 'guestbook',
         'nothing': "nothing",
+        'save': 'Save',
+        'delete': 'Delete',
     }
 }
 
@@ -86,7 +88,7 @@ def submit():
 
     username = request.form.get('username', '').strip()
     text = request.form.get('text', '').strip()
-    lang = get_lang()
+    lang = get_lang()  
 
     resp = redirect(url_for('index'))
 
@@ -98,6 +100,15 @@ def submit():
                       (username, text, now_str))
             conn.commit()
         resp.set_cookie('username', username, max_age=60 * 60 * 24 * 30)
+        
+        # 这里改一下：如果是异步请求，返回JSON
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return jsonify({
+                'username': username,
+                'text': text,
+                'timestamp': now_str
+            })
+    
 
     resp.set_cookie('last_submit_time', str(now_ts), max_age=3600)
     return resp
@@ -151,7 +162,7 @@ def reply(message_id):
 
 @app.route('/lang/<code>')
 def switch_lang(code):
-    resp = redirect(url_for('index'))
+    resp = redirect(request.referrer or url_for('index'))
     if code in ['zh', 'en']:
         resp.set_cookie('lang', code, max_age=60 * 60 * 24 * 365)
     return resp
