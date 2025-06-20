@@ -20,16 +20,17 @@
       <td>{{ text }}</td>
       <td>{{ timestamp }}</td>
       <td>
-        <form action="{{ url_for('reply', message_id=id) }}" method="post" style="display:flex; gap: 5px; align-items: center;">
-          <input type="text" name="reply" value="{{ reply or '' }}" placeholder="回复内容" style="flex: 1;margin: auto">
-          <button type="submit">保存</button>
+        <form action="{{ url_for('reply', mid=id) }}" method="post"
+              style="display:flex; gap:5px; align-items:center;">
+          <input type="text" name="reply" value="{{ reply or '' }}"
+                 placeholder="回复内容" style="flex:1; margin:auto">
+          <button type="submit">{{ t['save'] }}</button>
         </form>
       </td>
       <td>
-        <form action="{{ url_for('delete', message_id=id) }}" method="post" style="display:inline;">
-          <button type="submit" onclick="return confirm('确认删除？')">删除</button>
+        <form action="{{ url_for('delete', mid=id) }}" method="post" style="display:inline;">
+          <button type="submit" onclick="return confirm('确认删除？')">{{ t['delete'] }}</button>
         </form>
-        
       </td>
     </tr>
     {% endfor %}

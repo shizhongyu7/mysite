@@ -1,35 +1,33 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("message-form");
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
+  if (!form) return;
 
-    const formData = new FormData(form);
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+
     fetch(form.action, {
       method: "POST",
-      body: formData,
-      headers: {
-        "X-Requested-With": "XMLHttpRequest"
-      }
+      body: fd,
+      headers: { "X-Requested-With": "XMLHttpRequest" },
     })
-    .then(res => {
-      if (!res.ok) return res.json().then(err => { throw err; });
-      return res.json();
-    })
-    .then(data => {
-      const msg = document.createElement("div");
-      msg.className = "message-bubble";
-      msg.innerHTML = `
-        <div class="message-header">
-          <strong>${data.username}</strong>
-          <span class="timestamp">${data.timestamp.slice(0, 16)}</span>
-        </div>
-        <div class="message-text">${data.text}</div>
-      `;
-      document.querySelector(".showmessage").prepend(msg);
-      form.reset();
-    })
-    .catch(err => {
-      alert(err.error || "提交失败");
-    });
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.error) return alert(data.error);
+
+        // 构造新留言
+        const div = document.createElement("div");
+        div.className = "message-bubble";
+        div.innerHTML = `
+          <div class="message-header">
+            <strong>${data.username}</strong>
+            <span class="timestamp">${data.timestamp.slice(0, 16)}</span>
+          </div>
+          <div class="message-text">${data.text}</div>
+        `;
+        document.querySelector(".showmessage").prepend(div);
+        form.reset();
+      })
+      .catch(() => alert("Network error"));
   });
 });
