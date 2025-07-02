@@ -150,6 +150,15 @@ def forbidden(e):
     t, lang = get_t()
     return render_template('403.html', t=t, lang=lang), 403
 
+# ---------- 网站配置 ----------
+@app.route('/robots.txt')
+def robots():
+    return app.send_static_file('robots.txt')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return app.send_static_file('sitemap.xml')
+
 # ---------- 本地开发 ----------
 if __name__ == '__main__':
     app.run(debug=True)
