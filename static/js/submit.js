@@ -13,7 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then((r) => r.json())
       .then((data) => {
-        if (data.error) return alert(data.error);
+        if (data.error) {
+          showFlash(data.error);
+          return;
+        }
 
         // 构造新留言
         const div = document.createElement("div");
@@ -21,13 +24,32 @@ document.addEventListener("DOMContentLoaded", () => {
         div.innerHTML = `
           <div class="message-header">
             <strong>${data.username}</strong>
-            <span class="tamp">${data.timestamp.slice(0, 16)}</span>u
+            <span class="timestamp">${data.timestamp.slice(0, 16)}</span>
           </div>
           <div class="message-text">${data.text}</div>
         `;
         document.querySelector(".showmessage").prepend(div);
         form.reset();
+
+        // 显式保存用户名 cookie（防止部分浏览器未写入成功）
+        document.cookie = `username=${encodeURIComponent(data.username)}; max-age=${30 * 24 * 60 * 60}; path=/`;
       })
-      .catch(() => alert("Network error"));
+      .catch(() => showFlash("网络错误，请重试"));
   });
+
+  function showFlash(msg) {
+    let popup = document.getElementById("flash-popup");
+    if (!popup) {
+      popup = document.createElement("div");
+      popup.id = "flash-popup";
+      popup.className = "flash-popup";
+      document.body.appendChild(popup);
+    }
+    popup.innerHTML = `<p>${msg}</p>`;
+    popup.classList.remove("hide");
+
+    setTimeout(() => {
+      popup.classList.add("hide");
+    }, 3000);
+  }
 });
