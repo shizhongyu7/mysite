@@ -80,7 +80,9 @@ def submit():
 
     # AJAX 请求 → 返回 JSON
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        return jsonify({'username': username, 'text': text, 'timestamp': ts})
+        response = jsonify({'username': username, 'text': text, 'timestamp': ts})
+        response.set_cookie('username', username, max_age=COOKIE_MAX_AGE)
+        return response
 
     # 普通请求 → 重定向
     resp = redirect(url_for('index'))

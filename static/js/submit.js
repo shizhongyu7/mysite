@@ -31,8 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".showmessage").prepend(div);
         form.reset();
 
-        // 显式保存用户名 cookie（防止部分浏览器未写入成功）
-        document.cookie = `username=${encodeURIComponent(data.username)}; max-age=${30 * 24 * 60 * 60}; path=/`;
       })
       .catch(() => showFlash("网络错误，请重试"));
   });
