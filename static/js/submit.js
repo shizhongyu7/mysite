@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         div.innerHTML = `
           <div class="message-header">
             <strong>${data.username}</strong>
-            <span class="timestamp">${data.timestamp.slice(0, 16)}</span>
+            <span class="tamp">${data.timestamp.slice(0, 16)}</span>u
           </div>
           <div class="message-text">${data.text}</div>
         `;
